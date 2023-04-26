@@ -48,6 +48,7 @@ const renderdate = () => {
   ]
 
   document.querySelector('.content h1').innerHTML = months[date.getMonth()];
+  document.querySelector('.content h4').innerHTML = date.getFullYear()
   document.querySelector('.content p').innerHTML = new Date().toDateString();
 
   let days = "";
@@ -75,28 +76,30 @@ const renderdate = () => {
 
 // prew tháng
 document.querySelector('.prev').addEventListener('click', () => {
-  date.setMonth(date.getMonth() - 1);
-  renderdate();
+    date.setMonth(date.getMonth() - 1);
+    renderdate();
+    clickday()
 })
 
 // next tháng
 document.querySelector('.next').addEventListener('click', () => {
   date.setMonth(date.getMonth() + 1);
   renderdate();
+  clickday()
 })
 
 renderdate();
 
-var clickday = document.querySelectorAll('.clickday')
+function clickday(){
+  var clickday = document.querySelectorAll('.clickday')
 for (let i = 0; i < clickday.length; i++) {
   clickday[i].addEventListener('click',function(event){
     [...clickday].map(function(clday){
       clday.classList.remove('colorr')
     })
-   
     event.target.classList.add('colorr')
   })
-  
+}
 }
 
 
@@ -156,3 +159,5 @@ window.onload = function(){
       }
     setInterval(drawFlakes, 25);
     }
+
+
