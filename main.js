@@ -48,10 +48,10 @@ const renderdate = () => {
     "Tháng 12",
   ]
 
-  document.querySelector('.content h1').innerHTML = months[date.getMonth()];
+  document.querySelector('.content h3').innerHTML = months[date.getMonth()];
   document.querySelector('.content h4').innerHTML = date.getFullYear()
   document.querySelector('.content p').innerHTML = new Date().toDateString();
-
+  document.querySelector('.more-chone p').innerHTML = months[date.getMonth()] +' '+ date.getFullYear();
   let days = "";
 
   // các ngày trước tháng đoá
@@ -122,9 +122,6 @@ for (let i = 0; i < clickday.length; i++) {
 }
 
 
-
-
-
 // backgroup lấy trên mạng
 window.onload = function(){
   //get and store canvas & context
@@ -179,5 +176,48 @@ window.onload = function(){
       }
     setInterval(drawFlakes, 25);
     }
+    function openmonth(){
+        $('.more_chone-month').addClass("dpb")
+        $('.days').addClass("dpn")
+        $('.weekdays').addClass("dpn")
+      const monthhhh = [
+        "Tháng 1",
+        "Tháng 2",
+        "Tháng 3",
+        "Tháng 4",
+        "Tháng 5",
+        "Tháng 6",
+        "Tháng 7",
+        "Tháng 8",
+        "Tháng 9",
+        "Tháng 10",
+        "Tháng 11",
+        "Tháng 12",
+      ]
+    
+      for (let i = 0; i < monthhhh.length; i++) {
+        console.log(monthhhh[i])
+        $('.month-row').append(`
+        <div class="col-4 month_cell" onclick='targetmonth(${i})'>
+       ${monthhhh[i]}
+         </div>`
+      )
+        
+      }
+    const month_cell =document.querySelectorAll('.month_cell')
+    const index = date.getMonth()
+    month_cell[index].classList.add('blue')
+      
+    }
 
+    function targetmonth(i){
+     date.setMonth(i)
+     $('.more_chone-month').removeClass("dpb")
+     $('.days').removeClass("dpn")
+     $('.weekdays').removeClass("dpn")
+     $('.more_chone-month').addClass("dpn")
+     $('.days').addClass("dpf")
+     $('.weekdays').addClass("dpf")
 
+      renderdate()
+    }

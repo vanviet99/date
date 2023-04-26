@@ -12,12 +12,15 @@
   .container{
   
   }
-  
+  .content h4{
+  padding-bottom: 0px;
+  }
   
   /* Calendar */
   .calendar{
     width: 430px;
-    height: 500px;
+    /* height: 550px; */
+    height: 100%;
     background: white;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   }
@@ -29,6 +32,8 @@
     text-align: center;
     border-bottom: 1px solid #ccc;
     background-attachment: #ccc;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
   .calendar .month img{
     width: 26px;
@@ -130,3 +135,40 @@
   border: 5px solid rgb(119, 255, 0);
   background-color: #56b028;
   }
+  .adasdasd{
+    counter:black;
+    background-color: #f95c79;
+  }
+  .more_chone-month{
+  display: flex;
+  flex-wrap: nowrap;
+  }
+  .monthh{
+    width: 20%;
+  }
+
+  .month_cell{
+    padding: 20px;
+  }
+  .blue{
+    color: blue;
+  }
+  .more_chone-month{
+    display: none;
+  }
+  .more-chone{
+    cursor: pointer;
+  }
+
+  .dpb{
+  display: block ;
+  }
+  .dpn{
+    display: none ;
+  }
+  .month_cell:hover {
+    color: #f95c79;
+  }
+  .dpf{
+    display: flex ;
+    }
