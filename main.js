@@ -1,6 +1,7 @@
 const date = new Date();
 
 const renderdate = () => {
+  
   // đưa ngày về đầu tháng
   date.setDate(1);
   const monthDays = document.querySelector(".days");
@@ -54,22 +55,27 @@ const renderdate = () => {
   let days = "";
 
   // các ngày trước tháng đoá
+  var years = date.getFullYear()
+  var monthsss = date.getMonth()
   for (let x = firstDayIndex; x>0;x--){
-    days += `<div class="next-days clickday">${prevLastDay - x + 1}</div>`
+    var kq = [prevLastDay - x + 1,monthsss,years]
+    days += `<div class="next-days clickday" value='${kq}'>${prevLastDay - x + 1}</div>`
   }
 
   // tính cách ngày trong tháng này 
   for (let i = 1; i <= lastDay; i++){
+    let kqtoday = [i,monthsss+1,years]
     if(i===new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear()=== new Date().getFullYear()){
       days += `<div class="today">${i}</div>`
     } else {
-      days += `<div class="clickday">${i}</div>`
+      days += `<div class="clickday"value='${kqtoday}' >${i}</div>`
     }
   }
 
     //tìm vị trí thứ ngày hiện tại số phần tử tháng sau trong lịch
   for(let j = 1; j <= nextDays; j++){
-    days += `<div class="next-days clickday">${j}</div>`
+    let kqnext =[j,monthsss+2,years]
+    days += `<div class="next-days clickday" value='${kqnext}' >${j}</div>`
     monthDays.innerHTML = days;
   }
 };
@@ -77,6 +83,7 @@ const renderdate = () => {
 // prew tháng
 document.querySelector('.prev').addEventListener('click', () => {
     date.setMonth(date.getMonth() - 1);
+    const abc = localStorage.getItem('vitri')
     renderdate();
     clickday()
 })
@@ -89,18 +96,31 @@ document.querySelector('.next').addEventListener('click', () => {
 })
 
 renderdate();
-
+clickday()
 function clickday(){
   var clickday = document.querySelectorAll('.clickday')
+  var kqqq = localStorage.getItem('value')
+  console.log(kqqq) 
 for (let i = 0; i < clickday.length; i++) {
+  clickday[i].classList.remove('colorr')
+  const current = clickday[i].getAttribute('value');
+
   clickday[i].addEventListener('click',function(event){
     [...clickday].map(function(clday){
       clday.classList.remove('colorr')
     })
+    var cookieValue = clickday[i].getAttribute('value');
+    localStorage.setItem('value',cookieValue)
+    console.log(cookieValue, kqqq)
     event.target.classList.add('colorr')
   })
+  if(current === kqqq){
+    clickday[i].classList.add('colorr')
+
+  }
 }
 }
+
 
 
 
